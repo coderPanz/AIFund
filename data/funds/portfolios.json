@@ -1,0 +1,193 @@
+{
+  "portfolios": {
+    "1": {
+      "id": "conservative",
+      "name": "稳健保守型配置",
+      "riskLevel": 1,
+      "expectedReturn": 4.5,
+      "expectedRisk": -5.0,
+      "allocations": [
+        {
+          "fundCode": "050025",
+          "fundName": "博时信用债券A",
+          "ratio": 50,
+          "reason": "核心债券配置，提供稳定收益"
+        },
+        {
+          "fundCode": "519678",
+          "fundName": "银河稳健债券A",
+          "ratio": 30,
+          "reason": "补充债券配置，降低组合波动"
+        },
+        {
+          "fundCode": "070023",
+          "fundName": "嘉实沪深300ETF联接A",
+          "ratio": 20,
+          "reason": "适度配置权益资产，增强收益"
+        }
+      ]
+    },
+    "2": {
+      "id": "balanced_conservative",
+      "name": "平衡稳健型配置",
+      "riskLevel": 2,
+      "expectedReturn": 6.5,
+      "expectedRisk": -10.0,
+      "allocations": [
+        {
+          "fundCode": "050025",
+          "fundName": "博时信用债券A",
+          "ratio": 40,
+          "reason": "债券底仓，控制风险"
+        },
+        {
+          "fundCode": "519778",
+          "fundName": "交银定期支付双息平衡混合",
+          "ratio": 35,
+          "reason": "平衡型基金，股债均衡"
+        },
+        {
+          "fundCode": "090010",
+          "fundName": "大成中证红利指数A",
+          "ratio": 15,
+          "reason": "红利策略，稳健增值"
+        },
+        {
+          "fundCode": "000961",
+          "fundName": "沪深300ETF",
+          "ratio": 10,
+          "reason": "核心宽基指数增强"
+        }
+      ]
+    },
+    "3": {
+      "id": "balanced",
+      "name": "平衡型配置",
+      "riskLevel": 3,
+      "expectedReturn": 9.0,
+      "expectedRisk": -18.0,
+      "allocations": [
+        {
+          "fundCode": "519778",
+          "fundName": "交银定期支付双息平衡混合",
+          "ratio": 30,
+          "reason": "核心平衡配置"
+        },
+        {
+          "fundCode": "000961",
+          "fundName": "沪深300ETF",
+          "ratio": 25,
+          "reason": "核心宽基指数"
+        },
+        {
+          "fundCode": "163406",
+          "fundName": "兴全合润混合",
+          "ratio": 20,
+          "reason": "主动管理增强收益"
+        },
+        {
+          "fundCode": "050025",
+          "fundName": "博时信用债券A",
+          "ratio": 15,
+          "reason": "债券配置降低波动"
+        },
+        {
+          "fundCode": "270050",
+          "fundName": "广发纳斯达克100指数A",
+          "ratio": 10,
+          "reason": "海外资产分散风险"
+        }
+      ]
+    },
+    "4": {
+      "id": "growth",
+      "name": "成长型配置",
+      "riskLevel": 4,
+      "expectedReturn": 12.0,
+      "expectedRisk": -28.0,
+      "allocations": [
+        {
+          "fundCode": "110011",
+          "fundName": "易方达中小盘混合",
+          "ratio": 25,
+          "reason": "核心成长基金"
+        },
+        {
+          "fundCode": "005827",
+          "fundName": "易方达蓝筹精选混合",
+          "ratio": 20,
+          "reason": "蓝筹价值配置"
+        },
+        {
+          "fundCode": "260108",
+          "fundName": "景顺长城新兴成长混合",
+          "ratio": 20,
+          "reason": "成长股增强收益"
+        },
+        {
+          "fundCode": "000961",
+          "fundName": "沪深300ETF",
+          "ratio": 15,
+          "reason": "核心指数底仓"
+        },
+        {
+          "fundCode": "270050",
+          "fundName": "广发纳斯达克100指数A",
+          "ratio": 10,
+          "reason": "海外科技配置"
+        },
+        {
+          "fundCode": "050025",
+          "fundName": "博时信用债券A",
+          "ratio": 10,
+          "reason": "债券缓冲风险"
+        }
+      ]
+    },
+    "5": {
+      "id": "aggressive",
+      "name": "进取型配置",
+      "riskLevel": 5,
+      "expectedReturn": 15.0,
+      "expectedRisk": -40.0,
+      "allocations": [
+        {
+          "fundCode": "004854",
+          "fundName": "广发高端制造股票A",
+          "ratio": 25,
+          "reason": "高端制造主题投资"
+        },
+        {
+          "fundCode": "161725",
+          "fundName": "招商中证白酒指数",
+          "ratio": 20,
+          "reason": "消费赛道核心配置"
+        },
+        {
+          "fundCode": "270050",
+          "fundName": "广发纳斯达克100指数A",
+          "ratio": 20,
+          "reason": "美股科技核心配置"
+        },
+        {
+          "fundCode": "110011",
+          "fundName": "易方达中小盘混合",
+          "ratio": 15,
+          "reason": "主动管理增强"
+        },
+        {
+          "fundCode": "001230",
+          "fundName": "鹏华中证国防军工指数",
+          "ratio": 10,
+          "reason": "军工主题配置"
+        },
+        {
+          "fundCode": "000961",
+          "fundName": "沪深300ETF",
+          "ratio": 10,
+          "reason": "宽基指数底仓"
+        }
+      ]
+    }
+  }
+}

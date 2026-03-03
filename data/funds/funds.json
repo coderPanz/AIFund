@@ -1,0 +1,611 @@
+{
+  "funds": [
+    {
+      "code": "110011",
+      "name": "易方达中小盘混合",
+      "type": "混合型",
+      "manager": "张坤",
+      "company": "易方达基金",
+      "establishDate": "2008-06-19",
+      "scale": 287.65,
+      "benchmark": "沪深300指数收益率*45%+中证全债指数收益率*55%",
+      "riskLevel": 4,
+      "metrics": {
+        "annualizedReturn": 18.5,
+        "sharpeRatio": 1.28,
+        "maxDrawdown": -25.6,
+        "volatility": 18.2,
+        "oneYearReturn": 12.3,
+        "threeYearReturn": 45.6,
+        "sixMonthReturn": 8.2,
+        "oneMonthReturn": 2.1
+      },
+      "description": "本基金主要投资于具有较高成长性的中小盘股票，在严格控制风险的前提下，追求超越业绩比较基准的投资回报。",
+      "topHoldings": [
+        { "name": "贵州茅台", "ratio": 9.82, "type": "stock" },
+        { "name": "五粮液", "ratio": 8.56, "type": "stock" },
+        { "name": "泸州老窖", "ratio": 7.23, "type": "stock" },
+        { "name": "洋河股份", "ratio": 5.67, "type": "stock" },
+        { "name": "山西汾酒", "ratio": 4.89, "type": "stock" }
+      ]
+    },
+    {
+      "code": "000001",
+      "name": "华夏成长混合",
+      "type": "混合型",
+      "manager": "代瑞亮",
+      "company": "华夏基金",
+      "establishDate": "2001-12-18",
+      "scale": 156.32,
+      "benchmark": "沪深300指数收益率*80%+上证国债指数收益率*20%",
+      "riskLevel": 4,
+      "metrics": {
+        "annualizedReturn": 12.8,
+        "sharpeRatio": 0.95,
+        "maxDrawdown": -32.1,
+        "volatility": 19.5,
+        "oneYearReturn": 8.6,
+        "threeYearReturn": 32.4,
+        "sixMonthReturn": 5.3,
+        "oneMonthReturn": 1.5
+      },
+      "description": "本基金主要投资于具有良好成长性的股票，通过精选个股和积极主动的投资策略，追求基金资产的长期增值。",
+      "topHoldings": [
+        { "name": "宁德时代", "ratio": 8.23, "type": "stock" },
+        { "name": "比亚迪", "ratio": 6.78, "type": "stock" },
+        { "name": "隆基绿能", "ratio": 5.45, "type": "stock" },
+        { "name": "通威股份", "ratio": 4.56, "type": "stock" },
+        { "name": "阳光电源", "ratio": 3.89, "type": "stock" }
+      ]
+    },
+    {
+      "code": "161725",
+      "name": "招商中证白酒指数",
+      "type": "指数型",
+      "manager": "侯昊",
+      "company": "招商基金",
+      "establishDate": "2015-05-27",
+      "scale": 432.18,
+      "benchmark": "中证白酒指数收益率*95%+金融机构人民币活期存款基准利率(税后)*5%",
+      "riskLevel": 5,
+      "metrics": {
+        "annualizedReturn": 22.3,
+        "sharpeRatio": 1.15,
+        "maxDrawdown": -45.8,
+        "volatility": 28.6,
+        "oneYearReturn": -5.2,
+        "threeYearReturn": 68.9,
+        "sixMonthReturn": -8.6,
+        "oneMonthReturn": -2.3
+      },
+      "description": "本基金采用完全复制法跟踪中证白酒指数，主要投资于白酒行业上市公司股票。",
+      "topHoldings": [
+        { "name": "贵州茅台", "ratio": 15.23, "type": "stock" },
+        { "name": "五粮液", "ratio": 14.56, "type": "stock" },
+        { "name": "泸州老窖", "ratio": 11.23, "type": "stock" },
+        { "name": "山西汾酒", "ratio": 9.87, "type": "stock" },
+        { "name": "洋河股份", "ratio": 7.65, "type": "stock" }
+      ]
+    },
+    {
+      "code": "519778",
+      "name": "交银定期支付双息平衡混合",
+      "type": "混合型",
+      "manager": "王崇",
+      "company": "交银施罗德基金",
+      "establishDate": "2013-09-04",
+      "scale": 89.45,
+      "benchmark": "沪深300指数收益率*50%+中证综合债券指数收益率*50%",
+      "riskLevel": 3,
+      "metrics": {
+        "annualizedReturn": 15.6,
+        "sharpeRatio": 1.32,
+        "maxDrawdown": -18.5,
+        "volatility": 12.3,
+        "oneYearReturn": 6.8,
+        "threeYearReturn": 42.3,
+        "sixMonthReturn": 4.2,
+        "oneMonthReturn": 0.8
+      },
+      "description": "本基金在严格控制风险的前提下，追求资产的长期稳健增值，并通过定期支付机制为投资者提供稳定的现金流。",
+      "topHoldings": [
+        { "name": "长江电力", "ratio": 6.78, "type": "stock" },
+        { "name": "中国神华", "ratio": 5.34, "type": "stock" },
+        { "name": "陕西煤业", "ratio": 4.56, "type": "stock" },
+        { "name": "中国石化", "ratio": 3.89, "type": "stock" },
+        { "name": "工商银行", "ratio": 3.45, "type": "stock" }
+      ]
+    },
+    {
+      "code": "050025",
+      "name": "博时信用债券A",
+      "type": "债券型",
+      "manager": "过钧",
+      "company": "博时基金",
+      "establishDate": "2009-06-10",
+      "scale": 234.56,
+      "benchmark": "中证企业债指数收益率*80%+中证国债指数收益率*20%",
+      "riskLevel": 2,
+      "metrics": {
+        "annualizedReturn": 6.8,
+        "sharpeRatio": 1.45,
+        "maxDrawdown": -5.2,
+        "volatility": 4.2,
+        "oneYearReturn": 4.5,
+        "threeYearReturn": 18.6,
+        "sixMonthReturn": 2.3,
+        "oneMonthReturn": 0.4
+      },
+      "description": "本基金主要投资于信用债券，在控制风险的前提下，追求稳定的投资收益。",
+      "topHoldings": [
+        { "name": "21国开10", "ratio": 8.56, "type": "bond" },
+        { "name": "22农发02", "ratio": 6.78, "type": "bond" },
+        { "name": "20进出665", "ratio": 5.34, "type": "bond" },
+        { "name": "21农发05", "ratio": 4.89, "type": "bond" },
+        { "name": "22国开05", "ratio": 4.23, "type": "bond" }
+      ]
+    },
+    {
+      "code": "270050",
+      "name": "广发纳斯达克100指数A",
+      "type": "QDII",
+      "manager": "刘杰",
+      "company": "广发基金",
+      "establishDate": "2012-08-15",
+      "scale": 178.92,
+      "benchmark": "纳斯达克100指数收益率(经汇率调整)",
+      "riskLevel": 5,
+      "metrics": {
+        "annualizedReturn": 18.9,
+        "sharpeRatio": 0.98,
+        "maxDrawdown": -38.5,
+        "volatility": 23.4,
+        "oneYearReturn": 28.6,
+        "threeYearReturn": 52.3,
+        "sixMonthReturn": 15.8,
+        "oneMonthReturn": 3.2
+      },
+      "description": "本基金主要投资于纳斯达克100指数成份股，跟踪纳斯达克100指数表现。",
+      "topHoldings": [
+        { "name": "Apple Inc", "ratio": 12.56, "type": "stock" },
+        { "name": "Microsoft Corp", "ratio": 11.23, "type": "stock" },
+        { "name": "Amazon.com Inc", "ratio": 7.89, "type": "stock" },
+        { "name": "NVIDIA Corp", "ratio": 6.45, "type": "stock" },
+        { "name": "Meta Platforms Inc", "ratio": 5.67, "type": "stock" }
+      ]
+    },
+    {
+      "code": "000961",
+      "name": "沪深300ETF",
+      "type": "指数型",
+      "manager": "赵宗原",
+      "company": "华夏基金",
+      "establishDate": "2012-05-28",
+      "scale": 567.89,
+      "benchmark": "沪深300指数收益率",
+      "riskLevel": 4,
+      "metrics": {
+        "annualizedReturn": 8.5,
+        "sharpeRatio": 0.65,
+        "maxDrawdown": -42.3,
+        "volatility": 21.5,
+        "oneYearReturn": 3.2,
+        "threeYearReturn": 12.6,
+        "sixMonthReturn": 5.8,
+        "oneMonthReturn": 1.2
+      },
+      "description": "本基金紧密跟踪沪深300指数，追求跟踪偏离度和跟踪误差最小化。",
+      "topHoldings": [
+        { "name": "贵州茅台", "ratio": 5.23, "type": "stock" },
+        { "name": "中国平安", "ratio": 3.89, "type": "stock" },
+        { "name": "招商银行", "ratio": 3.45, "type": "stock" },
+        { "name": "宁德时代", "ratio": 2.78, "type": "stock" },
+        { "name": "美的集团", "ratio": 2.34, "type": "stock" }
+      ]
+    },
+    {
+      "code": "110018",
+      "name": "易方达积极成长混合",
+      "type": "混合型",
+      "manager": "何崇恺",
+      "company": "易方达基金",
+      "establishDate": "2004-08-06",
+      "scale": 123.45,
+      "benchmark": "沪深300指数收益率*70%+中证全债指数收益率*30%",
+      "riskLevel": 4,
+      "metrics": {
+        "annualizedReturn": 16.2,
+        "sharpeRatio": 1.08,
+        "maxDrawdown": -28.9,
+        "volatility": 17.8,
+        "oneYearReturn": 9.8,
+        "threeYearReturn": 48.5,
+        "sixMonthReturn": 6.5,
+        "oneMonthReturn": 1.8
+      },
+      "description": "本基金主要投资于积极成长型股票，在控制风险的前提下，追求资产的长期增值。",
+      "topHoldings": [
+        { "name": "立讯精密", "ratio": 7.23, "type": "stock" },
+        { "name": "歌尔股份", "ratio": 5.89, "type": "stock" },
+        { "name": "京东方A", "ratio": 4.56, "type": "stock" },
+        { "name": "TCL科技", "ratio": 3.78, "type": "stock" },
+        { "name": "韦尔股份", "ratio": 3.23, "type": "stock" }
+      ]
+    },
+    {
+      "code": "202301",
+      "name": "南方绩优成长混合A",
+      "type": "混合型",
+      "manager": "史博",
+      "company": "南方基金",
+      "establishDate": "2006-11-16",
+      "scale": 98.76,
+      "benchmark": "沪深300指数收益率*80%+上证国债指数收益率*20%",
+      "riskLevel": 4,
+      "metrics": {
+        "annualizedReturn": 14.5,
+        "sharpeRatio": 0.92,
+        "maxDrawdown": -35.6,
+        "volatility": 20.1,
+        "oneYearReturn": 7.2,
+        "threeYearReturn": 38.9,
+        "sixMonthReturn": 4.8,
+        "oneMonthReturn": 1.1
+      },
+      "description": "本基金主要投资于绩优成长型股票，通过深度研究和精选个股，追求长期稳定的投资回报。",
+      "topHoldings": [
+        { "name": "比亚迪", "ratio": 6.78, "type": "stock" },
+        { "name": "宁德时代", "ratio": 5.89, "type": "stock" },
+        { "name": "隆基绿能", "ratio": 4.56, "type": "stock" },
+        { "name": "亿纬锂能", "ratio": 3.78, "type": "stock" },
+        { "name": "恩捷股份", "ratio": 3.12, "type": "stock" }
+      ]
+    },
+    {
+      "code": "090010",
+      "name": "大成中证红利指数A",
+      "type": "指数型",
+      "manager": "刘旺",
+      "company": "大成基金",
+      "establishDate": "2010-02-12",
+      "scale": 45.67,
+      "benchmark": "中证红利指数收益率*95%+银行活期存款利率(税后)*5%",
+      "riskLevel": 3,
+      "metrics": {
+        "annualizedReturn": 10.2,
+        "sharpeRatio": 0.85,
+        "maxDrawdown": -28.5,
+        "volatility": 16.8,
+        "oneYearReturn": 8.5,
+        "threeYearReturn": 28.6,
+        "sixMonthReturn": 5.2,
+        "oneMonthReturn": 1.3
+      },
+      "description": "本基金跟踪中证红利指数，主要投资于高股息率的上市公司股票。",
+      "topHoldings": [
+        { "name": "中国神华", "ratio": 4.56, "type": "stock" },
+        { "name": "陕西煤业", "ratio": 3.89, "type": "stock" },
+        { "name": "大秦铁路", "ratio": 3.23, "type": "stock" },
+        { "name": "宝钢股份", "ratio": 2.78, "type": "stock" },
+        { "name": "中国石化", "ratio": 2.56, "type": "stock" }
+      ]
+    },
+    {
+      "code": "485111",
+      "name": "工银瑞信核心价值混合A",
+      "type": "混合型",
+      "manager": "何肖颉",
+      "company": "工银瑞信基金",
+      "establishDate": "2005-08-31",
+      "scale": 78.45,
+      "benchmark": "沪深300指数收益率*75%+上证国债指数收益率*25%",
+      "riskLevel": 4,
+      "metrics": {
+        "annualizedReturn": 13.8,
+        "sharpeRatio": 0.88,
+        "maxDrawdown": -33.2,
+        "volatility": 19.5,
+        "oneYearReturn": 5.6,
+        "threeYearReturn": 35.8,
+        "sixMonthReturn": 3.8,
+        "oneMonthReturn": 0.9
+      },
+      "description": "本基金主要投资于具有核心竞争力的优质企业，追求长期稳定的资本增值。",
+      "topHoldings": [
+        { "name": "贵州茅台", "ratio": 6.78, "type": "stock" },
+        { "name": "五粮液", "ratio": 5.23, "type": "stock" },
+        { "name": "泸州老窖", "ratio": 4.56, "type": "stock" },
+        { "name": "海天味业", "ratio": 3.89, "type": "stock" },
+        { "name": "伊利股份", "ratio": 3.12, "type": "stock" }
+      ]
+    },
+    {
+      "code": "519678",
+      "name": "银河稳健债券A",
+      "type": "债券型",
+      "manager": "蒋磊",
+      "company": "银河基金",
+      "establishDate": "2012-11-29",
+      "scale": 156.78,
+      "benchmark": "中证全债指数收益率",
+      "riskLevel": 2,
+      "metrics": {
+        "annualizedReturn": 5.8,
+        "sharpeRatio": 1.35,
+        "maxDrawdown": -3.8,
+        "volatility": 3.5,
+        "oneYearReturn": 3.8,
+        "threeYearReturn": 15.6,
+        "sixMonthReturn": 1.9,
+        "oneMonthReturn": 0.3
+      },
+      "description": "本基金主要投资于固定收益类资产，追求稳健的投资收益。",
+      "topHoldings": [
+        { "name": "23国开05", "ratio": 9.23, "type": "bond" },
+        { "name": "22农发10", "ratio": 7.56, "type": "bond" },
+        { "name": "21进出10", "ratio": 6.34, "type": "bond" },
+        { "name": "20国开15", "ratio": 5.67, "type": "bond" },
+        { "name": "22国开10", "ratio": 4.89, "type": "bond" }
+      ]
+    },
+    {
+      "code": "070023",
+      "name": "嘉实沪深300ETF联接A",
+      "type": "指数型",
+      "manager": "何如",
+      "company": "嘉实基金",
+      "establishDate": "2009-09-29",
+      "scale": 234.56,
+      "benchmark": "沪深300指数收益率*95%+银行活期存款利率(税后)*5%",
+      "riskLevel": 4,
+      "metrics": {
+        "annualizedReturn": 8.2,
+        "sharpeRatio": 0.62,
+        "maxDrawdown": -43.1,
+        "volatility": 22.3,
+        "oneYearReturn": 2.8,
+        "threeYearReturn": 11.5,
+        "sixMonthReturn": 5.2,
+        "oneMonthReturn": 1.1
+      },
+      "description": "本基金通过投资于沪深300ETF，实现对沪深300指数的紧密跟踪。",
+      "topHoldings": [
+        { "name": "沪深300ETF", "ratio": 92.34, "type": "stock" },
+        { "name": "银行存款", "ratio": 5.67, "type": "bond" },
+        { "name": "其他资产", "ratio": 1.99, "type": "bond" }
+      ]
+    },
+    {
+      "code": "260108",
+      "name": "景顺长城新兴成长混合",
+      "type": "混合型",
+      "manager": "刘彦春",
+      "company": "景顺长城基金",
+      "establishDate": "2006-06-28",
+      "scale": 345.67,
+      "benchmark": "沪深300指数收益率*80%+中证全债指数收益率*20%",
+      "riskLevel": 4,
+      "metrics": {
+        "annualizedReturn": 17.5,
+        "sharpeRatio": 1.12,
+        "maxDrawdown": -29.8,
+        "volatility": 18.9,
+        "oneYearReturn": 8.9,
+        "threeYearReturn": 52.3,
+        "sixMonthReturn": 6.2,
+        "oneMonthReturn": 1.6
+      },
+      "description": "本基金主要投资于新兴成长型企业，追求长期资本增值。",
+      "topHoldings": [
+        { "name": "贵州茅台", "ratio": 8.56, "type": "stock" },
+        { "name": "五粮液", "ratio": 7.23, "type": "stock" },
+        { "name": "泸州老窖", "ratio": 6.12, "type": "stock" },
+        { "name": "中国中免", "ratio": 5.34, "type": "stock" },
+        { "name": "迈瑞医疗", "ratio": 4.56, "type": "stock" }
+      ]
+    },
+    {
+      "code": "000479",
+      "name": "富国天惠成长混合A",
+      "type": "混合型",
+      "manager": "朱少醒",
+      "company": "富国基金",
+      "establishDate": "2005-11-16",
+      "scale": 412.34,
+      "benchmark": "沪深300指数收益率*80%+中证全债指数收益率*20%",
+      "riskLevel": 4,
+      "metrics": {
+        "annualizedReturn": 16.8,
+        "sharpeRatio": 1.05,
+        "maxDrawdown": -31.5,
+        "volatility": 18.5,
+        "oneYearReturn": 7.6,
+        "threeYearReturn": 48.9,
+        "sixMonthReturn": 5.8,
+        "oneMonthReturn": 1.4
+      },
+      "description": "本基金主要投资于具有良好成长性的上市公司股票，追求长期稳健增值。",
+      "topHoldings": [
+        { "name": "宁波银行", "ratio": 5.89, "type": "stock" },
+        { "name": "格力电器", "ratio": 5.23, "type": "stock" },
+        { "name": "国瓷材料", "ratio": 4.78, "type": "stock" },
+        { "name": "伊利股份", "ratio": 4.12, "type": "stock" },
+        { "name": "五粮液", "ratio": 3.89, "type": "stock" }
+      ]
+    },
+    {
+      "code": "163406",
+      "name": "兴全合润混合",
+      "type": "混合型",
+      "manager": "谢治宇",
+      "company": "兴证全球基金",
+      "establishDate": "2010-04-22",
+      "scale": 289.45,
+      "benchmark": "沪深300指数收益率*60%+中证全债指数收益率*40%",
+      "riskLevel": 3,
+      "metrics": {
+        "annualizedReturn": 18.2,
+        "sharpeRatio": 1.25,
+        "maxDrawdown": -22.3,
+        "volatility": 15.6,
+        "oneYearReturn": 10.2,
+        "threeYearReturn": 56.8,
+        "sixMonthReturn": 7.5,
+        "oneMonthReturn": 1.8
+      },
+      "description": "本基金通过精选个股和资产配置，追求长期稳健增值。",
+      "topHoldings": [
+        { "name": "海尔智家", "ratio": 6.78, "type": "stock" },
+        { "name": "三安光电", "ratio": 5.34, "type": "stock" },
+        { "name": "健友股份", "ratio": 4.89, "type": "stock" },
+        { "name": "万华化学", "ratio": 4.23, "type": "stock" },
+        { "name": "芒果超媒", "ratio": 3.78, "type": "stock" }
+      ]
+    },
+    {
+      "code": "004854",
+      "name": "广发高端制造股票A",
+      "type": "股票型",
+      "manager": "孙迪",
+      "company": "广发基金",
+      "establishDate": "2017-09-01",
+      "scale": 178.92,
+      "benchmark": "中证高端制造指数收益率*85%+人民币活期存款利率(税后)*15%",
+      "riskLevel": 5,
+      "metrics": {
+        "annualizedReturn": 21.5,
+        "sharpeRatio": 1.08,
+        "maxDrawdown": -35.6,
+        "volatility": 24.5,
+        "oneYearReturn": 15.6,
+        "threeYearReturn": 89.5,
+        "sixMonthReturn": 10.2,
+        "oneMonthReturn": 2.5
+      },
+      "description": "本基金主要投资于高端制造业上市公司，追求长期资本增值。",
+      "topHoldings": [
+        { "name": "宁德时代", "ratio": 9.56, "type": "stock" },
+        { "name": "隆基绿能", "ratio": 8.23, "type": "stock" },
+        { "name": "通威股份", "ratio": 7.12, "type": "stock" },
+        { "name": "晶澳科技", "ratio": 6.34, "type": "stock" },
+        { "name": "天合光能", "ratio": 5.67, "type": "stock" }
+      ]
+    },
+    {
+      "code": "000311",
+      "name": "景顺长城沪深300指数增强",
+      "type": "指数型",
+      "manager": "黎海威",
+      "company": "景顺长城基金",
+      "establishDate": "2013-10-29",
+      "scale": 145.67,
+      "benchmark": "沪深300指数收益率*95%+银行活期存款利率(税后)*5%",
+      "riskLevel": 4,
+      "metrics": {
+        "annualizedReturn": 10.8,
+        "sharpeRatio": 0.78,
+        "maxDrawdown": -38.9,
+        "volatility": 20.8,
+        "oneYearReturn": 5.6,
+        "threeYearReturn": 22.3,
+        "sixMonthReturn": 6.2,
+        "oneMonthReturn": 1.4
+      },
+      "description": "本基金通过量化策略增强沪深300指数投资收益。",
+      "topHoldings": [
+        { "name": "贵州茅台", "ratio": 6.23, "type": "stock" },
+        { "name": "中国平安", "ratio": 4.89, "type": "stock" },
+        { "name": "招商银行", "ratio": 4.12, "type": "stock" },
+        { "name": "宁德时代", "ratio": 3.56, "type": "stock" },
+        { "name": "美的集团", "ratio": 3.23, "type": "stock" }
+      ]
+    },
+    {
+      "code": "001230",
+      "name": "鹏华中证国防军工指数",
+      "type": "指数型",
+      "manager": "陈龙",
+      "company": "鹏华基金",
+      "establishDate": "2015-05-08",
+      "scale": 89.34,
+      "benchmark": "中证国防军工指数收益率*95%+银行活期存款利率(税后)*5%",
+      "riskLevel": 5,
+      "metrics": {
+        "annualizedReturn": 15.6,
+        "sharpeRatio": 0.72,
+        "maxDrawdown": -52.3,
+        "volatility": 32.5,
+        "oneYearReturn": 12.3,
+        "threeYearReturn": 65.8,
+        "sixMonthReturn": 8.9,
+        "oneMonthReturn": 2.1
+      },
+      "description": "本基金跟踪中证国防军工指数，主要投资于国防军工行业上市公司。",
+      "topHoldings": [
+        { "name": "中航沈飞", "ratio": 8.56, "type": "stock" },
+        { "name": "中航西飞", "ratio": 7.23, "type": "stock" },
+        { "name": "航发动力", "ratio": 6.34, "type": "stock" },
+        { "name": "中航光电", "ratio": 5.67, "type": "stock" },
+        { "name": "振华科技", "ratio": 4.89, "type": "stock" }
+      ]
+    },
+    {
+      "code": "005827",
+      "name": "易方达蓝筹精选混合",
+      "type": "混合型",
+      "manager": "张坤",
+      "company": "易方达基金",
+      "establishDate": "2018-09-05",
+      "scale": 678.92,
+      "benchmark": "沪深300指数收益率*45%+中证港股通综合指数收益率*35%+中证全债指数收益率*20%",
+      "riskLevel": 4,
+      "metrics": {
+        "annualizedReturn": 15.8,
+        "sharpeRatio": 1.02,
+        "maxDrawdown": -28.5,
+        "volatility": 17.8,
+        "oneYearReturn": 6.8,
+        "threeYearReturn": 42.5,
+        "sixMonthReturn": 4.5,
+        "oneMonthReturn": 1.2
+      },
+      "description": "本基金主要投资于蓝筹股，追求长期稳健增值。",
+      "topHoldings": [
+        { "name": "贵州茅台", "ratio": 8.34, "type": "stock" },
+        { "name": "腾讯控股", "ratio": 7.56, "type": "stock" },
+        { "name": "五粮液", "ratio": 6.89, "type": "stock" },
+        { "name": "泸州老窖", "ratio": 5.23, "type": "stock" },
+        { "name": "香港交易所", "ratio": 4.56, "type": "stock" }
+      ]
+    },
+    {
+      "code": "470009",
+      "name": "汇添富上证综合指数",
+      "type": "指数型",
+      "manager": "吴振翔",
+      "company": "汇添富基金",
+      "establishDate": "2009-07-01",
+      "scale": 67.89,
+      "benchmark": "上证综合指数收益率",
+      "riskLevel": 4,
+      "metrics": {
+        "annualizedReturn": 7.5,
+        "sharpeRatio": 0.55,
+        "maxDrawdown": -45.2,
+        "volatility": 23.1,
+        "oneYearReturn": 2.1,
+        "threeYearReturn": 8.9,
+        "sixMonthReturn": 4.8,
+        "oneMonthReturn": 1.0
+      },
+      "description": "本基金跟踪上证综合指数，实现与指数相近的投资收益。",
+      "topHoldings": [
+        { "name": "贵州茅台", "ratio": 4.56, "type": "stock" },
+        { "name": "中国石油", "ratio": 3.89, "type": "stock" },
+        { "name": "工商银行", "ratio": 3.45, "type": "stock" },
+        { "name": "农业银行", "ratio": 3.12, "type": "stock" },
+        { "name": "中国银行", "ratio": 2.89, "type": "stock" }
+      ]
+    }
+  ]
+}

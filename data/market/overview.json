@@ -1,0 +1,32 @@
+{
+  "market": [
+    {
+      "name": "上证指数",
+      "code": "000001",
+      "value": 3125.68,
+      "change": 23.45,
+      "changePercent": 0.76
+    },
+    {
+      "name": "深证成指",
+      "code": "399001",
+      "value": 10234.56,
+      "change": 156.78,
+      "changePercent": 1.56
+    },
+    {
+      "name": "创业板指",
+      "code": "399006",
+      "value": 2045.89,
+      "change": 45.67,
+      "changePercent": 2.28
+    },
+    {
+      "name": "沪深300",
+      "code": "000300",
+      "value": 3856.23,
+      "change": 52.34,
+      "changePercent": 1.37
+    }
+  ]
+}

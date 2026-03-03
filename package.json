@@ -1,0 +1,18 @@
+{
+  "name": "ai-fund-platform",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI Fund Investment Platform - MVP",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "dev:ai": "cd ai-service && python -m uvicorn app.main:app --reload --port 8000",
+    "install:all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && npm run start"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

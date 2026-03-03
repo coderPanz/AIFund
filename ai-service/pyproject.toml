@@ -1,0 +1,21 @@
+[project]
+name = "ai-fund-service"
+version = "0.1.0"
+description = "AI Fund Investment Service"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.115.6",
+    "uvicorn>=0.34.0",
+    "httpx>=0.28.1",
+    "pydantic>=2.10.3",
+    "python-dotenv>=1.0.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.4",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
