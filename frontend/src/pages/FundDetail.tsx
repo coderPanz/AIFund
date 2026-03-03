@@ -1,9 +1,8 @@
 import { useParams, Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { Card, Button, Badge, Loading } from '../components/ui'
-import { NavChart } from '../components/NavChart'
+import { cn, formatPercent, formatNumber, formatScale, getRiskLabel } from '../utils'
 import { getFundDetail } from '../api'
-import { formatPercent, formatNumber, formatScale, getRiskLabel, getReturnColor } from '../utils'
+import { NavChart } from '../components/NavChart'
 
 export default function FundDetail() {
   const { code } = useParams<{ code: string }>()
@@ -16,18 +15,18 @@ export default function FundDetail() {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center py-12">
-        <Loading size="lg" />
+      <div className="min-h-screen bg-dark-950 flex items-center justify-center">
+        <div className="w-10 h-10 border-2 border-accent-blue border-t-transparent rounded-full animate-spin" />
       </div>
     )
   }
 
   if (!fund) {
     return (
-      <div className="text-center py-12">
-        <p className="text-gray-500">基金不存在</p>
-        <Link to="/funds">
-          <Button className="mt-4">返回基金库</Button>
+      <div className="min-h-screen bg-dark-950 flex flex-col items-center justify-center">
+        <p className="text-dark-400 mb-4">基金不存在</p>
+        <Link to="/funds" className="text-accent-blue hover:text-accent-cyan transition-colors">
+          返回基金库
         </Link>
       </div>
     )
@@ -36,146 +35,120 @@ export default function FundDetail() {
   const metrics = fund.metrics || {}
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-start justify-between">
-        <div>
-          <div className="flex items-center gap-3 mb-2">
-            <h1 className="text-2xl font-bold text-gray-900">{fund.name}</h1>
-            <Badge>{fund.type}</Badge>
+    <div className="min-h-screen bg-grid">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Header */}
+        <div className="flex items-start justify-between mb-8">
+          <div>
+            <div className="flex items-center gap-3 mb-2">
+              <h1 className="text-3xl font-bold text-white">{fund.name}</h1>
+              <span className="px-3 py-1 text-sm rounded-full bg-dark-800 text-dark-300 border border-dark-700">
+                {fund.type}
+              </span>
+            </div>
+            <p className="text-dark-400">{fund.code} · {fund.company}</p>
           </div>
-          <p className="text-gray-500">{fund.code} · {fund.company}</p>
+          <Link
+            to="/funds"
+            className="px-4 py-2 bg-dark-800 border border-dark-700 rounded-lg text-sm text-dark-300 hover:text-white hover:border-dark-600 transition-all"
+          >
+            返回列表
+          </Link>
         </div>
-        <Link to="/funds">
-          <Button variant="outline">返回列表</Button>
-        </Link>
+
+        {/* Key Metrics */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          {[
+            { label: '近一年收益', value: metrics.oneYearReturn, isPercent: true, highlight: true },
+            { label: '近三年收益', value: metrics.threeYearReturn, isPercent: true },
+            { label: '最大回撤', value: metrics.maxDrawdown, isPercent: true, negative: true },
+            { label: '夏普比率', value: metrics.sharpeRatio, decimals: 2 },
+          ].map((item) => (
+            <div key={item.label} className="glass-card p-5">
+              <p className="text-sm text-dark-400 mb-1">{item.label}</p>
+              <p className={cn(
+                'text-2xl font-bold font-mono',
+                item.highlight
+                  ? item.value >= 0 ? 'text-accent-emerald' : 'text-accent-rose'
+                  : item.negative
+                    ? 'text-dark-200'
+                    : item.value >= 0 ? 'text-accent-emerald' : 'text-accent-rose'
+              )}>
+                {item.isPercent ? formatPercent(item.value || 0) : formatNumber(item.value || 0, item.decimals || 1)}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* Chart & Info */}
+        <div className="grid lg:grid-cols-3 gap-6 mb-8">
+          {/* Chart */}
+          <div className="lg:col-span-2 glass-card p-6">
+            <h2 className="text-lg font-semibold text-white mb-4">净值走势</h2>
+            <NavChart data={fund.navHistory || []} height={350} />
+          </div>
+
+          {/* Fund Info */}
+          <div className="glass-card p-6">
+            <h2 className="text-lg font-semibold text-white mb-4">基金信息</h2>
+            <div className="space-y-4">
+              {[
+                { label: '基金经理', value: fund.manager },
+                { label: '基金规模', value: formatScale(fund.scale) },
+                { label: '成立日期', value: fund.establishDate },
+                { label: '风险等级', value: getRiskLabel(fund.riskLevel) },
+              ].map((item) => (
+                <div key={item.label} className="flex justify-between py-2 border-b border-dark-800">
+                  <span className="text-dark-400 text-sm">{item.label}</span>
+                  <span className="text-white text-sm">{item.value}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 pt-4 border-t border-dark-800">
+              <p className="text-xs text-dark-500 mb-1">业绩基准</p>
+              <p className="text-sm text-dark-300">{fund.benchmark}</p>
+            </div>
+          </div>
+        </div>
+
+        {/* AI Analysis */}
+        {fund.aiAnalysis && (
+          <div className="glass-card p-6 mb-8">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center">
+                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+              </div>
+              <h2 className="text-lg font-semibold text-white">AI 分析</h2>
+            </div>
+            <div className="prose prose-invert prose-sm max-w-none text-dark-300">
+              <div className="whitespace-pre-wrap">{fund.aiAnalysis}</div>
+            </div>
+          </div>
+        )}
+
+        {/* Top Holdings */}
+        {fund.topHoldings && fund.topHoldings.length > 0 && (
+          <div className="glass-card p-6">
+            <h2 className="text-lg font-semibold text-white mb-4">前十大持仓</h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              {fund.topHoldings.map((holding: any, index: number) => (
+                <div key={index} className="flex items-center justify-between p-3 bg-dark-800/50 rounded-lg">
+                  <div className="flex items-center gap-3">
+                    <span className="w-6 h-6 rounded bg-dark-700 flex items-center justify-center text-xs text-dark-400">
+                      {index + 1}
+                    </span>
+                    <span className="text-white">{holding.name}</span>
+                  </div>
+                  <span className="font-mono text-dark-300">{holding.ratio}%</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
-
-      {/* Key Metrics */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card className="p-4 text-center">
-          <p className="text-sm text-gray-500 mb-1">近一年收益</p>
-          <p className={`text-2xl font-bold ${getReturnColor(metrics.oneYearReturn || 0)}`}>
-            {formatPercent(metrics.oneYearReturn || 0)}
-          </p>
-        </Card>
-        <Card className="p-4 text-center">
-          <p className="text-sm text-gray-500 mb-1">近三年收益</p>
-          <p className={`text-2xl font-bold ${getReturnColor(metrics.threeYearReturn || 0)}`}>
-            {formatPercent(metrics.threeYearReturn || 0)}
-          </p>
-        </Card>
-        <Card className="p-4 text-center">
-          <p className="text-sm text-gray-500 mb-1">最大回撤</p>
-          <p className="text-2xl font-bold text-gray-900">
-            {formatPercent(metrics.maxDrawdown || 0)}
-          </p>
-        </Card>
-        <Card className="p-4 text-center">
-          <p className="text-sm text-gray-500 mb-1">夏普比率</p>
-          <p className="text-2xl font-bold text-gray-900">
-            {formatNumber(metrics.sharpeRatio || 0)}
-          </p>
-        </Card>
-      </div>
-
-      {/* Chart */}
-      <Card className="p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">净值走势</h2>
-        <NavChart data={fund.navHistory || []} height={350} />
-      </Card>
-
-      {/* Fund Info */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card className="p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">基金信息</h2>
-          <div className="space-y-3">
-            <div className="flex justify-between">
-              <span className="text-gray-500">基金经理</span>
-              <span className="text-gray-900">{fund.manager}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-500">基金规模</span>
-              <span className="text-gray-900">{formatScale(fund.scale)}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-500">成立日期</span>
-              <span className="text-gray-900">{fund.establishDate}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-500">风险等级</span>
-              <span className="text-gray-900">{getRiskLabel(fund.riskLevel)}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-500">业绩基准</span>
-              <span className="text-gray-900 text-right text-sm">{fund.benchmark}</span>
-            </div>
-          </div>
-        </Card>
-
-        <Card className="p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">业绩指标</h2>
-          <div className="space-y-3">
-            <div className="flex justify-between">
-              <span className="text-gray-500">年化收益</span>
-              <span className={`font-medium ${getReturnColor(metrics.annualizedReturn || 0)}`}>
-                {formatPercent(metrics.annualizedReturn || 0)}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-500">波动率</span>
-              <span className="text-gray-900">{formatPercent(metrics.volatility || 0)}</span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-500">近六月收益</span>
-              <span className={`font-medium ${getReturnColor(metrics.sixMonthReturn || 0)}`}>
-                {formatPercent(metrics.sixMonthReturn || 0)}
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span className="text-gray-500">近一月收益</span>
-              <span className={`font-medium ${getReturnColor(metrics.oneMonthReturn || 0)}`}>
-                {formatPercent(metrics.oneMonthReturn || 0)}
-              </span>
-            </div>
-          </div>
-        </Card>
-      </div>
-
-      {/* AI Analysis */}
-      {fund.aiAnalysis && (
-        <Card className="p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">AI 分析</h2>
-          <div className="prose prose-sm max-w-none text-gray-700">
-            {fund.aiAnalysis}
-          </div>
-        </Card>
-      )}
-
-      {/* Top Holdings */}
-      {fund.topHoldings && fund.topHoldings.length > 0 && (
-        <Card className="p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">前十大持仓</h2>
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-gray-200">
-                  <th className="text-left py-2 text-gray-500 font-medium">名称</th>
-                  <th className="text-right py-2 text-gray-500 font-medium">占比</th>
-                </tr>
-              </thead>
-              <tbody>
-                {fund.topHoldings.map((holding: any, index: number) => (
-                  <tr key={index} className="border-b border-gray-100">
-                    <td className="py-2 text-gray-900">{holding.name}</td>
-                    <td className="py-2 text-right text-gray-900">{holding.ratio}%</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </Card>
-      )}
     </div>
   )
 }

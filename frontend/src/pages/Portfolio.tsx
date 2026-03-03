@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { Card, Button, Badge } from '../components/ui'
+import { cn, formatPercent } from '../utils'
 import { getPortfolioSuggestion } from '../api'
-import { formatPercent } from '../utils'
 
 const riskQuestions = [
   {
@@ -57,7 +56,7 @@ const riskQuestions = [
   },
 ]
 
-const riskProfiles = {
+const riskProfiles: Record<number, { type: string; description: string }> = {
   1: { type: '保守型', description: '您倾向于低风险投资，适合以债券、货币基金为主的稳健配置。' },
   2: { type: '稳健型', description: '您可以承受适度风险，适合股债平衡型的配置方案。' },
   3: { type: '平衡型', description: '您追求风险与收益的平衡，适合股债均衡配置。' },
@@ -84,7 +83,6 @@ export default function Portfolio() {
     if (currentQuestion < riskQuestions.length - 1) {
       setCurrentQuestion(currentQuestion + 1)
     } else {
-      // Calculate risk level
       const totalScore = newAnswers.reduce((a, b) => a + b, 0)
       const avgScore = totalScore / newAnswers.length
       const level = Math.min(5, Math.max(1, Math.round(avgScore)))
@@ -101,22 +99,26 @@ export default function Portfolio() {
 
   if (step === 'intro') {
     return (
-      <div className="max-w-2xl mx-auto">
-        <h1 className="text-2xl font-bold text-gray-900 mb-4">资产配置建议</h1>
-        <Card className="p-8 text-center">
-          <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="w-8 h-8 text-primary-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-            </svg>
+      <div className="min-h-screen bg-grid flex items-center justify-center">
+        <div className="max-w-lg w-full mx-4">
+          <div className="glass-card p-8 text-center">
+            <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center">
+              <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <h2 className="text-2xl font-bold text-white mb-2">资产配置建议</h2>
+            <p className="text-dark-400 mb-8">
+              完成 5 道问题，我们将根据您的风险偏好为您推荐合适的资产配置方案。
+            </p>
+            <button
+              onClick={() => setStep('quiz')}
+              className="btn-primary w-full text-lg py-4"
+            >
+              开始测评
+            </button>
           </div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">风险评估问卷</h2>
-          <p className="text-gray-500 mb-6">
-            完成 5 道问题，我们将根据您的风险偏好为您推荐合适的资产配置方案。
-          </p>
-          <Button size="lg" onClick={() => setStep('quiz')}>
-            开始测评
-          </Button>
-        </Card>
+        </div>
       </div>
     )
   }
@@ -124,132 +126,180 @@ export default function Portfolio() {
   if (step === 'quiz') {
     const question = riskQuestions[currentQuestion]
     return (
-      <div className="max-w-2xl mx-auto">
-        <div className="mb-6">
-          <div className="flex justify-between items-center mb-2">
-            <h1 className="text-2xl font-bold text-gray-900">风险评估</h1>
-            <span className="text-sm text-gray-500">
-              {currentQuestion + 1} / {riskQuestions.length}
-            </span>
+      <div className="min-h-screen bg-grid flex items-center justify-center">
+        <div className="max-w-2xl w-full mx-4">
+          {/* Progress */}
+          <div className="mb-8">
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-dark-400 text-sm">问题 {currentQuestion + 1} / {riskQuestions.length}</span>
+              <span className="text-dark-500 text-sm">{Math.round(((currentQuestion + 1) / riskQuestions.length) * 100)}%</span>
+            </div>
+            <div className="h-1.5 bg-dark-800 rounded-full overflow-hidden">
+              <div
+                className="h-full bg-gradient-to-r from-accent-blue to-accent-purple rounded-full transition-all duration-300"
+                style={{ width: `${((currentQuestion + 1) / riskQuestions.length) * 100}%` }}
+              />
+            </div>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
-            <div
-              className="bg-primary-600 h-2 rounded-full transition-all"
-              style={{ width: `${((currentQuestion + 1) / riskQuestions.length) * 100}%` }}
-            />
+
+          {/* Question Card */}
+          <div className="glass-card p-8">
+            <h2 className="text-xl font-semibold text-white mb-6">
+              {question.question}
+            </h2>
+            <div className="space-y-3">
+              {question.options.map((option, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleAnswer(option.score)}
+                  className="w-full text-left px-5 py-4 bg-dark-800/50 border border-dark-700 rounded-xl text-dark-200 hover:bg-dark-800 hover:border-accent-blue/30 hover:text-white transition-all duration-200"
+                >
+                  {option.text}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
-
-        <Card className="p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">
-            {question.question}
-          </h2>
-          <div className="space-y-3">
-            {question.options.map((option, index) => (
-              <button
-                key={index}
-                onClick={() => handleAnswer(option.score)}
-                className="w-full text-left px-4 py-3 border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-primary-300 transition-colors"
-              >
-                {option.text}
-              </button>
-            ))}
-          </div>
-        </Card>
       </div>
     )
   }
 
   // Result
-  const profile = riskProfiles[riskLevel as keyof typeof riskProfiles]
+  const profile = riskProfiles[riskLevel]
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-gray-900">您的配置建议</h1>
-        <Button variant="outline" onClick={resetQuiz}>
-          重新测评
-        </Button>
-      </div>
-
-      {/* Risk Profile */}
-      <Card className="p-6">
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 bg-primary-100 rounded-xl flex items-center justify-center">
-            <span className="text-xl font-bold text-primary-600">{riskLevel}</span>
-          </div>
+    <div className="min-h-screen bg-grid">
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        {/* Header */}
+        <div className="flex justify-between items-center mb-8">
           <div>
-            <h2 className="text-lg font-semibold text-gray-900">{profile.type}投资者</h2>
-            <p className="text-gray-500">{profile.description}</p>
+            <h1 className="text-3xl font-bold text-white">您的配置建议</h1>
+            <p className="text-dark-400 mt-1">基于您的风险偏好量身定制</p>
+          </div>
+          <button
+            onClick={resetQuiz}
+            className="px-4 py-2 bg-dark-800 border border-dark-700 rounded-lg text-sm text-dark-300 hover:text-white hover:border-dark-600 transition-all"
+          >
+            重新测评
+          </button>
+        </div>
+
+        {/* Risk Profile */}
+        <div className="glass-card p-6 mb-6">
+          <div className="flex items-center gap-4">
+            <div className={cn(
+              'w-14 h-14 rounded-xl flex items-center justify-center text-2xl font-bold text-white',
+              riskLevel <= 2 ? 'bg-gradient-to-br from-accent-emerald to-accent-cyan' :
+              riskLevel === 3 ? 'bg-gradient-to-br from-accent-blue to-accent-purple' :
+              'bg-gradient-to-br from-accent-amber to-accent-rose'
+            )}>
+              {riskLevel}
+            </div>
+            <div>
+              <h2 className="text-xl font-semibold text-white">{profile.type}投资者</h2>
+              <p className="text-dark-400">{profile.description}</p>
+            </div>
           </div>
         </div>
-      </Card>
 
-      {/* Portfolio Suggestion */}
-      {isLoading ? (
-        <Card className="p-6 text-center text-gray-500">正在生成配置建议...</Card>
-      ) : suggestion ? (
-        <Card className="p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">推荐配置方案</h2>
-
-          {/* Allocation Bar */}
-          <div className="mb-6">
-            <div className="flex h-8 rounded-lg overflow-hidden">
-              {suggestion.allocations?.map((alloc: any, index: number) => {
-                const colors = ['bg-primary-500', 'bg-green-500', 'bg-yellow-500', 'bg-purple-500', 'bg-pink-500']
-                return (
-                  <div
-                    key={index}
-                    className={`${colors[index % colors.length]} flex items-center justify-center text-white text-sm`}
-                    style={{ width: `${alloc.ratio}%` }}
-                  >
-                    {alloc.ratio}%
-                  </div>
-                )
-              })}
-            </div>
+        {/* Portfolio Suggestion */}
+        {isLoading ? (
+          <div className="glass-card p-8 text-center">
+            <div className="w-8 h-8 mx-auto border-2 border-accent-blue border-t-transparent rounded-full animate-spin" />
+            <p className="text-dark-400 mt-4">正在生成配置建议...</p>
           </div>
+        ) : suggestion ? (
+          <>
+            {/* Allocation Chart */}
+            <div className="glass-card p-6 mb-6">
+              <h3 className="text-lg font-semibold text-white mb-4">资产配置比例</h3>
+              <div className="h-10 flex rounded-xl overflow-hidden mb-4">
+                {suggestion.allocations?.map((alloc: any, index: number) => {
+                  const colors = [
+                    'bg-gradient-to-r from-accent-blue to-accent-cyan',
+                    'bg-gradient-to-r from-accent-purple to-accent-rose',
+                    'bg-gradient-to-r from-accent-emerald to-accent-cyan',
+                    'bg-gradient-to-r from-accent-amber to-accent-rose',
+                    'bg-gradient-to-r from-accent-blue to-accent-purple',
+                  ]
+                  return (
+                    <div
+                      key={index}
+                      className={cn('flex items-center justify-center text-white text-sm font-medium', colors[index % colors.length])}
+                      style={{ width: `${alloc.ratio}%` }}
+                    >
+                      {alloc.ratio}%
+                    </div>
+                  )
+                })}
+              </div>
 
-          {/* Allocation Details */}
-          <div className="space-y-4">
-            {suggestion.allocations?.map((alloc: any, index: number) => (
-              <div key={index} className="flex items-start justify-between p-4 bg-gray-50 rounded-lg">
-                <div>
-                  <h3 className="font-medium text-gray-900">{alloc.fundName}</h3>
-                  <p className="text-sm text-gray-500">{alloc.fundCode}</p>
+              {/* Legend */}
+              <div className="flex flex-wrap gap-4">
+                {suggestion.allocations?.map((alloc: any, index: number) => (
+                  <div key={index} className="flex items-center gap-2">
+                    <div className={cn(
+                      'w-3 h-3 rounded',
+                      index === 0 ? 'bg-accent-blue' :
+                      index === 1 ? 'bg-accent-purple' :
+                      index === 2 ? 'bg-accent-emerald' :
+                      index === 3 ? 'bg-accent-amber' :
+                      'bg-accent-rose'
+                    )} />
+                    <span className="text-sm text-dark-300">{alloc.fundName}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Allocation Details */}
+            <div className="space-y-4 mb-6">
+              {suggestion.allocations?.map((alloc: any, index: number) => (
+                <div key={index} className="glass-card p-5">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <h4 className="text-white font-medium">{alloc.fundName}</h4>
+                      <p className="text-xs text-dark-500 mt-1">{alloc.fundCode}</p>
+                    </div>
+                    <div className="text-right">
+                      <span className={cn(
+                        'px-3 py-1 rounded-full text-sm font-medium',
+                        alloc.ratio > 30 ? 'bg-accent-amber/20 text-accent-amber' : 'bg-dark-800 text-dark-300'
+                      )}>
+                        {alloc.ratio}%
+                      </span>
+                    </div>
+                  </div>
+                  <p className="text-sm text-dark-400 mt-3">{alloc.reason}</p>
                 </div>
-                <div className="text-right">
-                  <Badge variant={alloc.ratio > 30 ? 'warning' : 'default'}>
-                    {alloc.ratio}%
-                  </Badge>
-                  <p className="text-sm text-gray-500 mt-1">{alloc.reason}</p>
+              ))}
+            </div>
+
+            {/* Summary */}
+            <div className="glass-card p-6">
+              <div className="grid grid-cols-2 gap-6">
+                <div className="text-center p-4 bg-dark-800/50 rounded-xl">
+                  <p className="text-sm text-dark-400 mb-1">预期年化收益</p>
+                  <p className="text-2xl font-bold text-accent-emerald">
+                    {formatPercent(suggestion.expectedReturn || 0)}
+                  </p>
+                </div>
+                <div className="text-center p-4 bg-dark-800/50 rounded-xl">
+                  <p className="text-sm text-dark-400 mb-1">预期最大回撤</p>
+                  <p className="text-2xl font-bold text-accent-rose">
+                    {formatPercent(suggestion.expectedRisk || 0)}
+                  </p>
                 </div>
               </div>
-            ))}
-          </div>
-
-          {/* Summary */}
-          <div className="mt-6 pt-6 border-t border-gray-200 grid grid-cols-2 gap-4">
-            <div>
-              <p className="text-sm text-gray-500">预期年化收益</p>
-              <p className="text-xl font-semibold text-gray-900">
-                {formatPercent(suggestion.expectedReturn || 0)}
-              </p>
             </div>
-            <div>
-              <p className="text-sm text-gray-500">预期最大回撤</p>
-              <p className="text-xl font-semibold text-gray-900">
-                {formatPercent(suggestion.expectedRisk || 0)}
-              </p>
-            </div>
-          </div>
-        </Card>
-      ) : null}
+          </>
+        ) : null}
 
-      {/* Disclaimer */}
-      <p className="text-xs text-gray-400 text-center">
-        以上配置建议仅供参考，不构成投资建议。投资有风险，入市需谨慎。
-      </p>
+        {/* Disclaimer */}
+        <p className="text-xs text-dark-500 text-center mt-8">
+          以上配置建议仅供参考，不构成投资建议。投资有风险，入市需谨慎。
+        </p>
+      </div>
     </div>
   )
 }

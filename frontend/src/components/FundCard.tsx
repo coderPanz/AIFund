@@ -1,50 +1,54 @@
 import { Link } from 'react-router-dom'
-import { Card, Badge } from './ui'
+import { cn, formatPercent, formatScale } from '../utils'
 import { Fund } from '../types'
-import { formatPercent, formatScale, getReturnColor } from '../utils'
 
 interface FundCardProps {
   fund: Fund & { metrics?: { oneYearReturn: number; maxDrawdown: number } }
 }
 
 export function FundCard({ fund }: FundCardProps) {
-  const returnColor = getReturnColor(fund.metrics?.oneYearReturn || 0)
+  const isPositive = fund.metrics?.oneYearReturn >= 0
 
   return (
     <Link to={`/funds/${fund.code}`}>
-      <Card className="p-4 hover:shadow-md transition-shadow cursor-pointer">
-        <div className="flex justify-between items-start mb-3">
+      <div className="glass-card p-5 hover:border-accent-blue/30 transition-all duration-300 cursor-pointer group">
+        <div className="flex justify-between items-start mb-4">
           <div>
-            <h3 className="font-medium text-gray-900">{fund.name}</h3>
-            <p className="text-sm text-gray-500">{fund.code}</p>
+            <h3 className="font-medium text-white group-hover:text-accent-blue transition-colors">{fund.name}</h3>
+            <p className="text-sm text-dark-500 mt-1">{fund.code}</p>
           </div>
-          <Badge>{fund.type}</Badge>
+          <span className="px-2.5 py-1 text-xs rounded-full bg-dark-800 text-dark-300 border border-dark-700">
+            {fund.type}
+          </span>
         </div>
 
         <div className="grid grid-cols-3 gap-4 text-sm">
           <div>
-            <p className="text-gray-500">近一年收益</p>
-            <p className={`font-semibold ${returnColor}`}>
+            <p className="text-dark-500 text-xs mb-1">近一年收益</p>
+            <p className={cn(
+              'font-semibold font-mono',
+              isPositive ? 'text-accent-emerald' : 'text-accent-rose'
+            )}>
               {formatPercent(fund.metrics?.oneYearReturn || 0)}
             </p>
           </div>
           <div>
-            <p className="text-gray-500">最大回撤</p>
-            <p className="font-semibold text-gray-900">
+            <p className="text-dark-500 text-xs mb-1">最大回撤</p>
+            <p className="font-semibold font-mono text-dark-200">
               {formatPercent(fund.metrics?.maxDrawdown || 0)}
             </p>
           </div>
           <div>
-            <p className="text-gray-500">规模</p>
-            <p className="font-semibold text-gray-900">{formatScale(fund.scale)}</p>
+            <p className="text-dark-500 text-xs mb-1">规模</p>
+            <p className="font-semibold text-dark-200">{formatScale(fund.scale)}</p>
           </div>
         </div>
 
-        <div className="mt-3 pt-3 border-t border-gray-100 flex justify-between text-xs text-gray-500">
-          <span>基金经理: {fund.manager}</span>
+        <div className="mt-4 pt-4 border-t border-dark-800 flex justify-between text-xs text-dark-500">
+          <span>{fund.manager}</span>
           <span>{fund.company}</span>
         </div>
-      </Card>
+      </div>
     </Link>
   )
 }

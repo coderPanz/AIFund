@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { Card, Button, Loading } from '../components/ui'
+import { cn, formatPercent } from '../utils'
 import { chatWithAI } from '../api'
 import type { ChatMessage } from '../types'
 
@@ -86,32 +86,50 @@ export default function AIAdvisor() {
   }
 
   return (
-    <div className="h-[calc(100vh-12rem)] flex flex-col">
-      <h1 className="text-2xl font-bold text-gray-900 mb-4">AI 选基助手</h1>
+    <div className="h-[calc(100vh-4rem)] flex flex-col bg-grid">
+      <div className="max-w-4xl w-full mx-auto flex flex-col h-full">
+        {/* Header */}
+        <div className="p-6 border-b border-dark-800">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center">
+              <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+            </div>
+            <div>
+              <h1 className="text-xl font-bold text-white">AI 选基助手</h1>
+              <p className="text-sm text-dark-400">智能分析，专业建议</p>
+            </div>
+          </div>
+        </div>
 
-      <Card className="flex-1 flex flex-col overflow-hidden">
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+        <div className="flex-1 overflow-y-auto p-6 space-y-4">
           {messages.map((msg) => (
             <div
               key={msg.id}
-              className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+              className={cn('flex', msg.role === 'user' ? 'justify-end' : 'justify-start')}
             >
               <div
-                className={`max-w-[80%] rounded-xl px-4 py-3 ${
+                className={cn(
+                  'max-w-[80%] rounded-2xl px-4 py-3',
                   msg.role === 'user'
-                    ? 'bg-primary-600 text-white'
-                    : 'bg-gray-100 text-gray-900'
-                }`}
+                    ? 'bg-gradient-to-r from-accent-blue to-accent-purple text-white'
+                    : 'bg-dark-800 text-dark-100 border border-dark-700'
+                )}
               >
-                <div className="whitespace-pre-wrap text-sm">{msg.content}</div>
+                <div className="whitespace-pre-wrap text-sm leading-relaxed">{msg.content}</div>
               </div>
             </div>
           ))}
           {isLoading && messages[messages.length - 1]?.content === '' && (
             <div className="flex justify-start">
-              <div className="bg-gray-100 rounded-xl px-4 py-3">
-                <Loading size="sm" />
+              <div className="bg-dark-800 border border-dark-700 rounded-2xl px-4 py-3">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-accent-blue rounded-full animate-pulse" />
+                  <div className="w-2 h-2 bg-accent-blue rounded-full animate-pulse delay-75" />
+                  <div className="w-2 h-2 bg-accent-blue rounded-full animate-pulse delay-150" />
+                </div>
               </div>
             </div>
           )}
@@ -120,14 +138,14 @@ export default function AIAdvisor() {
 
         {/* Suggested Questions */}
         {messages.length <= 1 && (
-          <div className="px-4 pb-2">
-            <p className="text-xs text-gray-500 mb-2">您可以问我：</p>
+          <div className="px-6 pb-2">
+            <p className="text-xs text-dark-500 mb-2">您可以问我：</p>
             <div className="flex flex-wrap gap-2">
               {suggestedQuestions.map((q, i) => (
                 <button
                   key={i}
                   onClick={() => handleSend(q)}
-                  className="text-xs px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-full text-gray-700 transition-colors"
+                  className="text-xs px-3 py-1.5 bg-dark-800 hover:bg-dark-700 border border-dark-700 hover:border-dark-600 rounded-full text-dark-300 hover:text-white transition-all"
                 >
                   {q}
                 </button>
@@ -137,27 +155,32 @@ export default function AIAdvisor() {
         )}
 
         {/* Input */}
-        <div className="border-t border-gray-200 p-4">
-          <div className="flex gap-2">
+        <div className="p-6 border-t border-dark-800">
+          <div className="flex gap-3">
             <textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder="输入您的问题..."
-              className="flex-1 resize-none border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+              placeholder="输入您的投资问题..."
+              className="flex-1 resize-none bg-dark-800 border border-dark-700 rounded-xl px-4 py-3 text-white placeholder-dark-500 focus:outline-none focus:border-accent-blue/50 transition-colors"
               rows={1}
               disabled={isLoading}
             />
-            <Button
+            <button
               onClick={() => handleSend()}
               disabled={!input.trim() || isLoading}
-              className="self-end"
+              className={cn(
+                'px-6 py-3 rounded-xl font-medium transition-all duration-200',
+                input.trim() && !isLoading
+                  ? 'bg-gradient-to-r from-accent-blue to-accent-purple text-white hover:opacity-90'
+                  : 'bg-dark-800 text-dark-500 cursor-not-allowed'
+              )}
             >
               发送
-            </Button>
+            </button>
           </div>
         </div>
-      </Card>
+      </div>
     </div>
   )
 }

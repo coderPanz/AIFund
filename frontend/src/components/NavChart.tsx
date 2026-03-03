@@ -14,7 +14,7 @@ export function NavChart({ data, height = 300 }: NavChartProps) {
     if (!chartRef.current) return
 
     if (!chartInstance.current) {
-      chartInstance.current = echarts.init(chartRef.current)
+      chartInstance.current = echarts.init(chartRef.current, 'dark')
     }
 
     const dates = data.map((d) => d.date)
@@ -22,16 +22,23 @@ export function NavChart({ data, height = 300 }: NavChartProps) {
     const accNavData = data.map((d) => d.accNav)
 
     const option: echarts.EChartsOption = {
+      backgroundColor: 'transparent',
       tooltip: {
         trigger: 'axis',
-        backgroundColor: 'rgba(255, 255, 255, 0.95)',
-        borderColor: '#e5e7eb',
+        backgroundColor: 'rgba(15, 23, 42, 0.95)',
+        borderColor: 'rgba(59, 130, 246, 0.3)',
         borderWidth: 1,
-        textStyle: { color: '#374151' },
+        textStyle: { color: '#e2e8f0', fontSize: 12 },
+        axisPointer: {
+          type: 'cross',
+          lineStyle: { color: 'rgba(59, 130, 246, 0.3)' }
+        }
       },
       legend: {
         data: ['单位净值', '累计净值'],
         bottom: 0,
+        textStyle: { color: '#64748b', fontSize: 12 },
+        itemGap: 20
       },
       grid: {
         left: '3%',
@@ -44,15 +51,16 @@ export function NavChart({ data, height = 300 }: NavChartProps) {
         type: 'category',
         data: dates,
         boundaryGap: false,
-        axisLine: { lineStyle: { color: '#e5e7eb' } },
-        axisLabel: { color: '#6b7280', fontSize: 11 },
+        axisLine: { lineStyle: { color: '#1e293b' } },
+        axisLabel: { color: '#64748b', fontSize: 11 },
+        splitLine: { show: false }
       },
       yAxis: {
         type: 'value',
         axisLine: { show: false },
         axisTick: { show: false },
-        splitLine: { lineStyle: { color: '#f3f4f6' } },
-        axisLabel: { color: '#6b7280', fontSize: 11 },
+        splitLine: { lineStyle: { color: '#1e293b' } },
+        axisLabel: { color: '#64748b', fontSize: 11 },
       },
       series: [
         {
@@ -64,7 +72,7 @@ export function NavChart({ data, height = 300 }: NavChartProps) {
           lineStyle: { width: 2, color: '#3b82f6' },
           areaStyle: {
             color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-              { offset: 0, color: 'rgba(59, 130, 246, 0.2)' },
+              { offset: 0, color: 'rgba(59, 130, 246, 0.25)' },
               { offset: 1, color: 'rgba(59, 130, 246, 0)' },
             ]),
           },
@@ -76,6 +84,12 @@ export function NavChart({ data, height = 300 }: NavChartProps) {
           smooth: true,
           symbol: 'none',
           lineStyle: { width: 2, color: '#10b981' },
+          areaStyle: {
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+              { offset: 0, color: 'rgba(16, 185, 129, 0.15)' },
+              { offset: 1, color: 'rgba(16, 185, 129, 0)' },
+            ]),
+          },
         },
       ],
     }

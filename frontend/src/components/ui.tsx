@@ -16,14 +16,14 @@ export function Button({
   return (
     <button
       className={cn(
-        'inline-flex items-center justify-center font-medium rounded-lg transition-colors',
-        'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500',
+        'inline-flex items-center justify-center font-medium rounded-xl transition-all duration-200',
+        'focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-dark-950 focus:ring-accent-blue',
         'disabled:opacity-50 disabled:cursor-not-allowed',
         {
-          'bg-primary-600 text-white hover:bg-primary-700': variant === 'primary',
-          'bg-gray-100 text-gray-700 hover:bg-gray-200': variant === 'secondary',
-          'border border-gray-300 text-gray-700 hover:bg-gray-50': variant === 'outline',
-          'text-gray-600 hover:bg-gray-100': variant === 'ghost',
+          'bg-gradient-to-r from-accent-blue to-accent-purple text-white hover:opacity-90 shadow-lg shadow-accent-blue/25': variant === 'primary',
+          'bg-dark-800 text-dark-200 hover:bg-dark-700 hover:text-white border border-dark-700': variant === 'secondary',
+          'border border-dark-600 text-dark-300 hover:bg-dark-800 hover:text-white': variant === 'outline',
+          'text-dark-400 hover:bg-dark-800 hover:text-white': variant === 'ghost',
         },
         {
           'px-3 py-1.5 text-sm': size === 'sm',
@@ -46,14 +46,14 @@ interface CardProps {
 
 export function Card({ className, children }: CardProps) {
   return (
-    <div className={cn('bg-white rounded-xl shadow-sm border border-gray-200', className)}>
+    <div className={cn('bg-dark-900/60 backdrop-blur-xl border border-dark-700/50 rounded-2xl', className)}>
       {children}
     </div>
   )
 }
 
 interface BadgeProps {
-  variant?: 'default' | 'success' | 'warning' | 'danger'
+  variant?: 'default' | 'success' | 'warning' | 'danger' | 'info'
   children: React.ReactNode
 }
 
@@ -61,12 +61,13 @@ export function Badge({ variant = 'default', children }: BadgeProps) {
   return (
     <span
       className={cn(
-        'inline-flex items-center px-2 py-0.5 rounded text-xs font-medium',
+        'inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium',
         {
-          'bg-gray-100 text-gray-700': variant === 'default',
-          'bg-green-100 text-green-700': variant === 'success',
-          'bg-yellow-100 text-yellow-700': variant === 'warning',
-          'bg-red-100 text-red-700': variant === 'danger',
+          'bg-dark-800 text-dark-300': variant === 'default',
+          'bg-accent-emerald/20 text-accent-emerald': variant === 'success',
+          'bg-accent-amber/20 text-accent-amber': variant === 'warning',
+          'bg-accent-rose/20 text-accent-rose': variant === 'danger',
+          'bg-accent-blue/20 text-accent-blue': variant === 'info',
         }
       )}
     >
@@ -84,7 +85,7 @@ export function Loading({ size = 'md' }: LoadingProps) {
     <div className="flex items-center justify-center">
       <div
         className={cn(
-          'border-2 border-primary-200 border-t-primary-600 rounded-full animate-spin',
+          'border-2 border-accent-blue border-t-transparent rounded-full animate-spin',
           {
             'w-4 h-4': size === 'sm',
             'w-6 h-6': size === 'md',
